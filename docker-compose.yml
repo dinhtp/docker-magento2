@@ -1,85 +1,85 @@
 version: '3.5'
 
 services:
-  # ce226:
-  #   image: dinhtp/php:7.1.33-composer1.10.22
-  #   restart: always
-  #   volumes:
-  #     - ./ce226:/var/www/html
-  #   ports:
-  #     - 8010:80
-  #   depends_on:
-  #     - ce-mariadb
-  #   links:
-  #     - ce-mariadb
-  #   hostname: ce226
-  #   container_name: ce226
-  #   networks:
-  #     - ce-newtwork
+  ce226:
+    image: dinhtp/php:7.1.33-composer1.10.22
+    restart: always
+    volumes:
+      - ./ce226:/var/www/html
+    ports:
+      - 8010:80
+    depends_on:
+      - ce-mariadb
+    links:
+      - ce-mariadb
+    hostname: ce226
+    container_name: ce226
+    networks:
+      - ce-newtwork
 
-  # ce234:
-  #   image: dinhtp/php:7.2.34-composer1.10.22
-  #   restart: always
-  #   volumes:
-  #     - ./ce234:/var/www/html
-  #   ports:
-  #     - 8020:80
-  #   depends_on:
-  #     - ce-mariadb
-  #   links:
-  #     - ce-mariadb
-  #   hostname: ce234
-  #   container_name: ce234
-  #   networks:
-  #     - ce-newtwork
+  ce234:
+    image: dinhtp/php:7.2.34-composer1.10.22
+    restart: always
+    volumes:
+      - ./ce234:/var/www/html
+    ports:
+      - 8020:80
+    depends_on:
+      - ce-mariadb
+    links:
+      - ce-mariadb
+    hostname: ce234
+    container_name: ce234
+    networks:
+      - ce-newtwork
 
-  # ce236:
-  #   image: dinhtp/php:7.3.28-composer1.10.22
-  #   restart: always
-  #   volumes:
-  #     - ./ce236:/var/www/html
-  #   ports:
-  #     - 8030:80
-  #   depends_on:
-  #     - ce-mariadb
-  #   links:
-  #     - ce-mariadb
-  #   hostname: ce236
-  #   container_name: ce236
-  #   networks:
-  #     - ce-newtwork
+  ce236:
+    image: dinhtp/php:7.3.28-composer1.10.22
+    restart: always
+    volumes:
+      - ./ce236:/var/www/html
+    ports:
+      - 8030:80
+    depends_on:
+      - ce-mariadb
+    links:
+      - ce-mariadb
+    hostname: ce236
+    container_name: ce236
+    networks:
+      - ce-newtwork
 
-  # ce241:
-  #   image: dinhtp/php:7.4.19-composer1.10.22
-  #   restart: always
-  #   volumes:
-  #     - ./ce241:/var/www/html
-  #   ports:
-  #     - 8040:80
-  #   depends_on:
-  #     - ce-mariadb
-  #   links:
-  #     - ce-mariadb
-  #   hostname: ce241
-  #   container_name: ce241
-  #   networks:
-  #     - ce-newtwork
+  ce241:
+    image: dinhtp/php:7.4.19-composer1.10.22
+    restart: always
+    volumes:
+      - ./ce241:/var/www/html
+    ports:
+      - 8040:80
+    depends_on:
+      - ce-mariadb
+    links:
+      - ce-mariadb
+    hostname: ce241
+    container_name: ce241
+    networks:
+      - ce-newtwork
           
-  # ce242:
-  #   image: dinhtp/php:7.4.19-composer2.0.14
-  #   restart: always
-  #   volumes:
-  #     - ./ce242:/var/www/html
-  #   ports:
-  #     - 8050:80
-  #   depends_on:
-  #     - ce-mariadb
-  #   links:
-  #     - ce-mariadb
-  #   hostname: ce242
-  #   container_name: ce242
-  #   networks:
-  #     - ce-newtwork
+  ce242:
+    image: dinhtp/php:7.4.19-composer2.0.14
+    restart: always
+    volumes:
+      - ./ce242:/var/www/html
+    ports:
+      - 8050:80
+    depends_on:
+      - ce-mariadb
+    links:
+      - ce-mariadb
+    hostname: ce242
+    container_name: ce242
+    networks:
+      - ce-newtwork
 
   ce-mariadb:
     image: mariadb
@@ -100,7 +100,7 @@ services:
     ports:
      - 8080:80
     environment:
-     - PMA_HOST=mariadb
+     - PMA_HOST=ce-mariadb
      - PMA_USER=root
      - PMA_PASSWORD=root
      - MYSQL_ROOT_PASSWORD=root
