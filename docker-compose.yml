@@ -9,27 +9,93 @@ services:
   #   ports:
   #     - 8010:80
   #   depends_on:
-  #     - mariadb
+  #     - ce-mariadb
   #   links:
-  #     - mariadb
-  #   hostname: magento-ce226
-  #   container_name: magento-ce226
+  #     - ce-mariadb
+  #   hostname: ce226
+  #   container_name: ce226
   #   networks:
-  #     - magento2-ce
+  #     - ce-newtwork
 
-  mariadb:
+  # ce234:
+  #   image: dinhtp/php:7.2.34-composer1.10.22
+  #   restart: always
+  #   volumes:
+  #     - ./ce234:/var/www/html
+  #   ports:
+  #     - 8020:80
+  #   depends_on:
+  #     - ce-mariadb
+  #   links:
+  #     - ce-mariadb
+  #   hostname: ce234
+  #   container_name: ce234
+  #   networks:
+  #     - ce-newtwork
+
+  # ce236:
+  #   image: dinhtp/php:7.3.28-composer1.10.22
+  #   restart: always
+  #   volumes:
+  #     - ./ce236:/var/www/html
+  #   ports:
+  #     - 8030:80
+  #   depends_on:
+  #     - ce-mariadb
+  #   links:
+  #     - ce-mariadb
+  #   hostname: ce236
+  #   container_name: ce236
+  #   networks:
+  #     - ce-newtwork
+
+  # ce241:
+  #   image: dinhtp/php:7.4.19-composer1.10.22
+  #   restart: always
+  #   volumes:
+  #     - ./ce241:/var/www/html
+  #   ports:
+  #     - 8040:80
+  #   depends_on:
+  #     - ce-mariadb
+  #   links:
+  #     - ce-mariadb
+  #   hostname: ce241
+  #   container_name: ce241
+  #   networks:
+  #     - ce-newtwork
+          
+  # ce242:
+  #   image: dinhtp/php:7.4.19-composer2.0.14
+  #   restart: always
+  #   volumes:
+  #     - ./ce242:/var/www/html
+  #   ports:
+  #     - 8050:80
+  #   depends_on:
+  #     - ce-mariadb
+  #   links:
+  #     - ce-mariadb
+  #   hostname: ce242
+  #   container_name: ce242
+  #   networks:
+  #     - ce-newtwork
+
+  ce-mariadb:
     image: mariadb
     ports:
-     - 3300:3306
+     - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ./mariadb/data:/var/lib/mysql
       - ./mariadb/init/init.sql:/docker-entrypoint-initdb.d/init.sql
+    hostname: ce-mariadb
+    container_name: ce-mariadb
     networks:
-      - magento2-ce
+      - ce-newtwork
 
-  phpmyadmin:
+  ce-phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
      - 8080:80
@@ -38,12 +104,12 @@ services:
      - PMA_USER=root
      - PMA_PASSWORD=root
      - MYSQL_ROOT_PASSWORD=root
-    hostname: magento-phpmyadmin
-    container_name: magento-phpmyadmin
+    hostname: ce-phpmyadmin
+    container_name: ce-phpmyadmin
     networks:
-      - magento2-ce
+      - ce-newtwork
 
-  nginx:
+  ce-nginx:
     image: nginx:latest
     restart: always
     volumes:
@@ -54,11 +120,11 @@ services:
     expose:
       - '80'
       - '443'
-    hostname: magento-nginx
-    container_name: magento-nginx
+    hostname: ce-nginx
+    container_name: ce-nginx
     networks:
-      - magento2-ce
+      - ce-newtwork
 
 networks:
-  magento2-ce:
+  ce-newtwork:
     driver: bridge

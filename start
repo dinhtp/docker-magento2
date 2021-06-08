@@ -1,14 +1,31 @@
-#!/usr/bin/env bash
-docker-compose up -d && \
-echo "
-===================== 🚀 Done 🚀 ===================
+#!/bin/bash
 
-      Created by Rafael Corrêa Gomes
-      v.$version
-      Access your new links:
+# Get private IP address
+PRIVATE_IP=`ip route get 8.8.8.8 | sed -n '/src/{s/.*src *\([^ ]*\).*/\1/p;q}'`
 
-      🌎 Web server: http://localhost/
-      ⚙️ PHPMyAdmin: http://localhost:8080
-      ✉️ Local emails: http://localhost:8025
+# Remove the conf file and checkout the example file
+rm ./nginx/nginx.conf
+git checkout nginx/nginx.conf.example
 
-===================== 🚀 Done 🚀 ==================="
+# Replace the private_ip variable with the device private IP
+sed -i "s/private_ip/${PRIVATE_IP}/g" ./nginx/nginx.conf.example
+cp ./nginx/nginx.conf.example ./nginx/nginx.conf
+
+# Checkout the example file for future use
+git checkout nginx/nginx.conf.example
+
+# Start docker container
+# docker-compose up -d --remove-orphans
+docker-compose up --remove-orphans
+# echo "
+# ================== 🚀 Magento Development Instances 🚀 =================
+
+#             Magento CE 226: http://ce226.dev/
+#             Magento CE 234: http://ce234.dev/
+#             Magento CE 236: http://ce236.dev/
+#             Magento CE 241: http://ce241.dev/
+#             Magento CE 242: http://ce242.dev/
+
+#             PHPMyAdmin: http://phpmyadmin.dev/
+      
+# ===================== 🚀 Build Something Amazing 🚀 ==================="

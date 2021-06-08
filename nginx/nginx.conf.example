@@ -1,0 +1,51 @@
+events { }
+
+http {
+    server {
+	    server_name ce226.dev;
+	    location / {
+	    	proxy_pass http://172.29.241.60:8010;
+	    	rewrite ^/ce226(.*)$ $1 break;
+	    }
+    }
+
+    server {
+	    server_name ce234.dev;
+	    location / {
+	    	proxy_pass http://172.29.241.60:8020;
+	    	rewrite ^/ce234(.*)$ $1 break;
+	    }
+    }
+
+    server {
+	    server_name ce236.dev;
+	    location / {
+	    	proxy_pass http://172.29.241.60:8030;
+	    	rewrite ^/ce236(.*)$ $1 break;
+	    }
+    }
+
+    server {
+	    server_name ce241.dev;
+	    location / {
+	    	proxy_pass http://172.29.241.60:8040;
+	    	rewrite ^/ce241(.*)$ $1 break;
+	    }
+    }
+
+    server {
+	    server_name ce242.dev;
+	    location / {
+	    	proxy_pass http://172.29.241.60:8050;
+	    	rewrite ^/ce242(.*)$ $1 break;
+	    }
+    }
+
+    server {
+	    server_name phpmyadmin.dev;
+	    location / {
+	    	proxy_pass http://172.29.241.60:8080;
+	    	rewrite ^/ce-phpmyadmin(.*)$ $1 break;
+	    }
+    }
+}
