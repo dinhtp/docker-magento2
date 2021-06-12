@@ -3,6 +3,7 @@ version: '3.5'
 services:
   ce226:
     image: dinhtp/php:7.1.33-composer1.10.22
+    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce226:/var/www/html
@@ -19,11 +20,12 @@ services:
 
   ce234:
     image: dinhtp/php:7.2.34-composer1.10.22
+    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce234:/var/www/html
     ports:
-      - 8020:80
+      - 8015:80
     depends_on:
       - ce-mariadb
     links:
@@ -35,11 +37,12 @@ services:
 
   ce236:
     image: dinhtp/php:7.3.28-composer1.10.22
+    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce236:/var/www/html
     ports:
-      - 8030:80
+      - 8020:80
     depends_on:
       - ce-mariadb
     links:
@@ -51,11 +54,12 @@ services:
 
   ce241:
     image: dinhtp/php:7.4.19-composer1.10.22
+    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce241:/var/www/html
     ports:
-      - 8040:80
+      - 8025:80
     depends_on:
       - ce-mariadb
     links:
@@ -67,11 +71,12 @@ services:
           
   ce242:
     image: dinhtp/php:7.4.19-composer2.0.14
+    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce242:/var/www/html
     ports:
-      - 8050:80
+      - 8030:80
     depends_on:
       - ce-mariadb
     links:
@@ -88,8 +93,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
-      - ./mariadb/data:/var/lib/mysql
-      - ./mariadb/init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ce-mariadb-data:/var/lib/mysql
+      - ./mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql
     hostname: ce-mariadb
     container_name: ce-mariadb
     networks:
@@ -97,6 +102,7 @@ services:
 
   ce-phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    restart: always
     ports:
      - 8080:80
     environment:
@@ -128,3 +134,7 @@ services:
 networks:
   ce-newtwork:
     driver: bridge
+
+volumes:
+  ce-mariadb-data:
+    name: ce-mariadb-data
