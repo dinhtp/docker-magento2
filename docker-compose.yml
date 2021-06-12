@@ -8,7 +8,7 @@ services:
     volumes:
       - ./ce226:/var/www/html
     ports:
-      - 8010:80
+      - 7010:80
     depends_on:
       - ce-mariadb
     links:
@@ -16,7 +16,7 @@ services:
     hostname: ce226
     container_name: ce226
     networks:
-      - ce-newtwork
+      - ce-network
 
   ce234:
     image: dinhtp/php:7.2.34-composer1.10.22
@@ -25,7 +25,7 @@ services:
     volumes:
       - ./ce234:/var/www/html
     ports:
-      - 8015:80
+      - 7015:80
     depends_on:
       - ce-mariadb
     links:
@@ -33,7 +33,7 @@ services:
     hostname: ce234
     container_name: ce234
     networks:
-      - ce-newtwork
+      - ce-network
 
   ce236:
     image: dinhtp/php:7.3.28-composer1.10.22
@@ -42,7 +42,7 @@ services:
     volumes:
       - ./ce236:/var/www/html
     ports:
-      - 8020:80
+      - 7020:80
     depends_on:
       - ce-mariadb
     links:
@@ -50,7 +50,7 @@ services:
     hostname: ce236
     container_name: ce236
     networks:
-      - ce-newtwork
+      - ce-network
 
   ce241:
     image: dinhtp/php:7.4.19-composer1.10.22
@@ -59,7 +59,7 @@ services:
     volumes:
       - ./ce241:/var/www/html
     ports:
-      - 8025:80
+      - 7025:80
     depends_on:
       - ce-mariadb
     links:
@@ -67,7 +67,7 @@ services:
     hostname: ce241
     container_name: ce241
     networks:
-      - ce-newtwork
+      - ce-network
           
   ce242:
     image: dinhtp/php:7.4.19-composer2.0.14
@@ -76,7 +76,7 @@ services:
     volumes:
       - ./ce242:/var/www/html
     ports:
-      - 8030:80
+      - 7030:80
     depends_on:
       - ce-mariadb
     links:
@@ -84,8 +84,54 @@ services:
     hostname: ce242
     container_name: ce242
     networks:
-      - ce-newtwork
+      - ce-network
 
+  # Elastic Search Services
+  # Execute the following command to increase max virtual memory
+  # sudo sysctl -w vm.max_map_count=262144
+  ce-est-241:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+    volumes:
+      - ce-est-241:/usr/share/elasticsearch/data
+    environment:
+      - node.name=ce-est-241
+      - cluster.name=ce-est-cluster
+      - discovery.seed_hosts=ce-est-241
+      - cluster.initial_master_nodes=ce-est-241
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9241:9200
+    container_name: ce-est-241
+    networks:
+      - ce-network
+
+  ce-est-242:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+    volumes:
+      - ce-est-242:/usr/share/elasticsearch/data
+    environment:
+      - node.name=ce-est-242
+      - cluster.name=ce-est-cluster
+      - discovery.seed_hosts=ce-est-242
+      - cluster.initial_master_nodes=ce-est-242
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9242:9200
+    container_name: ce-est-242
+    networks:
+      - ce-network
+
+  # Infrastructure Services
   ce-mariadb:
     image: mariadb
     ports:
@@ -95,10 +141,9 @@ services:
     volumes:
       - ce-mariadb-data:/var/lib/mysql
       - ./mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql
-    hostname: ce-mariadb
     container_name: ce-mariadb
     networks:
-      - ce-newtwork
+      - ce-network
 
   ce-phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -113,7 +158,7 @@ services:
     hostname: ce-phpmyadmin
     container_name: ce-phpmyadmin
     networks:
-      - ce-newtwork
+      - ce-network
 
   ce-nginx:
     image: nginx:latest
@@ -126,15 +171,28 @@ services:
     expose:
       - '80'
       - '443'
-    hostname: ce-nginx
     container_name: ce-nginx
     networks:
-      - ce-newtwork
+      - ce-network
+
+  ce-mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+    container_name: ce-mailhog
+    networks:
+      - ce-network
 
 networks:
-  ce-newtwork:
+  ce-network:
     driver: bridge
 
 volumes:
   ce-mariadb-data:
-    name: ce-mariadb-data
+    driver: local
+  ce-est-241:
+    driver: local
+  ce-est-242:
+    driver: local
+  

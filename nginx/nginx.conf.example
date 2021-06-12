@@ -4,7 +4,7 @@ http {
     server {
 	    server_name dev.ce226.local;
 	    location / {
-	    	proxy_pass http://private_ip:8010;
+	    	proxy_pass http://private_ip:7010;
 	    	rewrite ^/ce226(.*)$ $1 break;
 	    }
     }
@@ -12,7 +12,7 @@ http {
     server {
 	    server_name dev.ce234.local;
 	    location / {
-	    	proxy_pass http://private_ip:8015;
+	    	proxy_pass http://private_ip:7015;
 	    	rewrite ^/ce234(.*)$ $1 break;
 	    }
     }
@@ -20,7 +20,7 @@ http {
     server {
 	    server_name dev.ce236.local;
 	    location / {
-	    	proxy_pass http://private_ip:8020;
+	    	proxy_pass http://private_ip:7020;
 	    	rewrite ^/ce236(.*)$ $1 break;
 	    }
     }
@@ -28,7 +28,7 @@ http {
     server {
 	    server_name dev.ce241.local;
 	    location / {
-	    	proxy_pass http://private_ip:8025;
+	    	proxy_pass http://private_ip:7025;
 	    	rewrite ^/ce241(.*)$ $1 break;
 	    }
     }
@@ -36,7 +36,7 @@ http {
     server {
 	    server_name dev.ce242.local;
 	    location / {
-	    	proxy_pass http://private_ip:8030;
+	    	proxy_pass http://private_ip:7030;
 	    	rewrite ^/ce242(.*)$ $1 break;
 	    }
     }
