@@ -3,7 +3,6 @@ version: '3.5'
 services:
   ce226:
     image: dinhtp/php:7.1.33-composer1.10.22
-    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce226:/var/www/html
@@ -20,7 +19,6 @@ services:
 
   ce234:
     image: dinhtp/php:7.2.34-composer1.10.22
-    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce234:/var/www/html
@@ -37,7 +35,6 @@ services:
 
   ce236:
     image: dinhtp/php:7.3.28-composer1.10.22
-    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce236:/var/www/html
@@ -54,7 +51,6 @@ services:
 
   ce241:
     image: dinhtp/php:7.4.19-composer1.10.22
-    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce241:/var/www/html
@@ -71,7 +67,6 @@ services:
           
   ce242:
     image: dinhtp/php:7.4.19-composer2.0.14
-    command: apachectl -D FOREGROUND
     restart: always
     volumes:
       - ./ce242:/var/www/html
@@ -180,6 +175,7 @@ services:
     ports:
       - 1025:1025
       - 8025:8025
+    hostname: ce-mailhog
     container_name: ce-mailhog
     networks:
       - ce-network

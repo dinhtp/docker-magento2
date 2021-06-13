@@ -42,6 +42,14 @@ http {
     }
 
     server {
+	    server_name dev.mail.local;
+	    location / {
+	    	proxy_pass http://private_ip:8025;
+	    	rewrite ^/ce-mailhog(.*)$ $1 break;
+	    }
+    }
+
+    server {
 	    server_name dev.pma.local;
 	    location / {
 	    	proxy_pass http://private_ip:8080;

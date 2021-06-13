@@ -12,8 +12,7 @@ fi
 git checkout ./nginx/nginx.conf.example
 
 # Replace the private_ip variable with the device private IP
-# sed -i "s/private_ip/${PRIVATE_IP}/g" ./nginx/nginx.conf.example
-sed -i "s/private_ip/192.168.0.101/g" ./nginx/nginx.conf.example
+sed -i "s/private_ip/${PRIVATE_IP}/g" ./nginx/nginx.conf.example
 cp ./nginx/nginx.conf.example ./nginx/nginx.conf
 
 # Checkout the example file for future use
@@ -30,6 +29,7 @@ echo "
             Magento CE 241: http://dev.ce241.local/
             Magento CE 242: http://dev.ce242.local/
 
-            PHPMyAdmin: http://dev.pma.local/
+            PHPMyAdmin:     http://dev.pma.local/
+            Mailhog:        http://dev.mail.local/
       
 ===================== 🚀 Build Something Amazing 🚀 ==================="
