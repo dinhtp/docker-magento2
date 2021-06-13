@@ -58,8 +58,10 @@ services:
       - 7025:80
     depends_on:
       - ce-mariadb
+      - ce-est-241
     links:
       - ce-mariadb
+      - ce-est-241
     hostname: ce241
     container_name: ce241
     networks:
@@ -74,8 +76,10 @@ services:
       - 7030:80
     depends_on:
       - ce-mariadb
+      - ce-est-242
     links:
       - ce-mariadb
+      - ce-est-242
     hostname: ce242
     container_name: ce242
     networks:

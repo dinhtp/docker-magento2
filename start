@@ -30,6 +30,6 @@ echo "
             Magento CE 242: http://dev.ce242.local/
 
             PHPMyAdmin:     http://dev.pma.local/
-            Mailhog:        http://dev.mail.local/
+            Mailhog:        http://dev.mailhog.local/
       
 ===================== 🚀 Build Something Amazing 🚀 ==================="

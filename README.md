@@ -13,7 +13,7 @@
 - 127.0.0.1 dev.ce241.local
 - 127.0.0.1 dev.ce242.local
 - 127.0.0.1 dev.pma.local
-- 127.0.0.1 dev.mail.local
+- 127.0.0.1 dev.mailhog.local
 
 ## Additional Infrastructure Services:
 - Elasticsearch v7.7.1
