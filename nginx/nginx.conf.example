@@ -2,7 +2,7 @@ events { }
 
 http {
     server {
-	    server_name ce.226.dev;
+	    server_name ce226.local;
 	    location / {
 	    	proxy_pass http://private_ip:7010;
 	    	rewrite ^/ce226(.*)$ $1 break;
@@ -10,7 +10,7 @@ http {
     }
 
     server {
-	    server_name ce.234.dev;
+	    server_name ce234.local;
 	    location / {
 	    	proxy_pass http://private_ip:7015;
 	    	rewrite ^/ce234(.*)$ $1 break;
@@ -18,7 +18,7 @@ http {
     }
 
     server {
-	    server_name ce.236.dev;
+	    server_name ce236.local;
 	    location / {
 	    	proxy_pass http://private_ip:7020;
 	    	rewrite ^/ce236(.*)$ $1 break;
@@ -26,7 +26,7 @@ http {
     }
 
     server {
-	    server_name ce.241.dev;
+	    server_name ce241.local;
 	    location / {
 	    	proxy_pass http://private_ip:7025;
 	    	rewrite ^/ce241(.*)$ $1 break;
@@ -34,7 +34,7 @@ http {
     }
 
     server {
-	    server_name ce.242.dev;
+	    server_name ce242.local;
 	    location / {
 	    	proxy_pass http://private_ip:7030;
 	    	rewrite ^/ce242(.*)$ $1 break;
@@ -42,7 +42,7 @@ http {
     }
 
     server {
-	    server_name ce.mailhog.dev;
+	    server_name mh.local;
 	    location / {
 	    	proxy_pass http://private_ip:8025;
 	    	rewrite ^/ce-mailhog(.*)$ $1 break;
@@ -50,7 +50,7 @@ http {
     }
 
     server {
-	    server_name ce.pma.dev;
+	    server_name pma.local;
 	    location / {
 	    	proxy_pass http://private_ip:8080;
 	    	rewrite ^/ce-phpmyadmin(.*)$ $1 break;
