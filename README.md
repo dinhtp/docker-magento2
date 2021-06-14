@@ -7,13 +7,13 @@
 - CE 2.4.2
 
 ## Active domains for Host File
-- 127.0.0.1 dev.ce226.local
-- 127.0.0.1 dev.ce234.local 
-- 127.0.0.1 dev.ce236.local
-- 127.0.0.1 dev.ce241.local
-- 127.0.0.1 dev.ce242.local
-- 127.0.0.1 dev.pma.local
-- 127.0.0.1 dev.mailhog.local
+- 127.0.0.1 ce.226.dev
+- 127.0.0.1 ce.234.dev 
+- 127.0.0.1 ce.236.dev
+- 127.0.0.1 ce.241.dev
+- 127.0.0.1 ce.242.dev
+- 127.0.0.1 ce.pma.dev
+- 127.0.0.1 ce.mailhog.dev
 
 ## Additional Infrastructure Services:
 - Elasticsearch v7.7.1 [For Magento 241]

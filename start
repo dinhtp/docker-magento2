@@ -23,13 +23,13 @@ docker-compose up -d --remove-orphans
 echo "
 ================== 🚀 Magento Development Instances 🚀 =================
 
-            Magento CE 226: http://dev.ce226.local/
-            Magento CE 234: http://dev.ce234.local/
-            Magento CE 236: http://dev.ce236.local/
-            Magento CE 241: http://dev.ce241.local/
-            Magento CE 242: http://dev.ce242.local/
+            Magento CE 226: http://ce.226.dev/
+            Magento CE 234: http://ce.234.dev/
+            Magento CE 236: http://ce.236.dev/
+            Magento CE 241: http://ce.241.dev/
+            Magento CE 242: http://ce.242.dev/
 
-            PHPMyAdmin:     http://dev.pma.local/
-            Mailhog:        http://dev.mailhog.local/
+            PHPMyAdmin:     http://ce.pma.dev/
+            Mailhog:        http://ce.mailhog.dev/
       
 ===================== 🚀 Build Something Amazing 🚀 ==================="
