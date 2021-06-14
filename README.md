@@ -16,9 +16,21 @@
 - 127.0.0.1 dev.mailhog.local
 
 ## Additional Infrastructure Services:
-- Elasticsearch v7.7.1
-- Elasticsearch v7.9.1
+- Elasticsearch v7.7.1 [For Magento 241]
+- Elasticsearch v7.9.1 [For Magento 242]
 - Mariadb
 - Phpmyadmin
 - Nginx
 - Mailhog
+
+## Elasticsearch exit with code 78
+```
+# Execute the following command:
+sudo sysctl -w vm.max_map_count=524288
+
+# Edit /etc/sysctl.conf
+# This will prevent the system to reset the value after each reboot
+vm.max_map_count=524288
+
+```
+
