@@ -3,7 +3,7 @@ version: '3.5'
 services:
   ce226:
     image: dinhtp/php:7.1.33-composer1.10.22
-    restart: always
+    command: apachectl -D FOREGROUND
     volumes:
       - ./ce226:/var/www/html
     ports:
@@ -19,7 +19,7 @@ services:
 
   ce234:
     image: dinhtp/php:7.2.34-composer1.10.22
-    restart: always
+    command: apachectl -D FOREGROUND
     volumes:
       - ./ce234:/var/www/html
     ports:
@@ -35,7 +35,7 @@ services:
 
   ce236:
     image: dinhtp/php:7.3.28-composer1.10.22
-    restart: always
+    command: apachectl -D FOREGROUND
     volumes:
       - ./ce236:/var/www/html
     ports:
@@ -51,7 +51,7 @@ services:
 
   ce241:
     image: dinhtp/php:7.4.19-composer1.10.22
-    restart: always
+    command: apachectl -D FOREGROUND
     volumes:
       - ./ce241:/var/www/html
     ports:
@@ -69,7 +69,7 @@ services:
           
   ce242:
     image: dinhtp/php:7.4.19-composer2.0.14
-    restart: always
+    command: apachectl -D FOREGROUND
     volumes:
       - ./ce242:/var/www/html
     ports:
@@ -103,6 +103,7 @@ services:
         hard: -1
     ports:
       - 9241:9200
+      - 9341:9300
     container_name: ce-est-241
     networks:
       - ce-network
@@ -124,13 +125,15 @@ services:
         hard: -1
     ports:
       - 9242:9200
+      - 9342:9300
     container_name: ce-est-242
+    hostname: ce-est-242
     networks:
       - ce-network
 
   # Infrastructure Services
   ce-mariadb:
-    image: mariadb
+    image: mariadb:10.4
     ports:
      - 3306:3306
     environment:
